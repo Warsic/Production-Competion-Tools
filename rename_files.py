@@ -5,7 +5,10 @@ import sys
 def rename_files(directory):
     # 获取目录中的所有符合条件的 .wav 文件
     files = [f for f in os.listdir(directory) if f.endswith('.wav') and '-' in f]
-    
+
+    # 统一编号宽度，确保序号按位数对齐（例如 01、02、10）
+    width = max(2, len(str(len(files))))
+
     # 随机生成编号的列表，从1开始，且不超过文件数量
     random_numbers = list(range(1, len(files) + 1))
     random.shuffle(random_numbers)
@@ -15,8 +18,8 @@ def rename_files(directory):
         parts = filename.rsplit('-', 1)
         if len(parts) == 2:
             author, work = parts
-            # 获取对应的随机编号
-            random_number = str(random_numbers[i])
+            # 获取对应的随机编号，并补零对齐
+            random_number = str(random_numbers[i]).zfill(width)
             # 生成新文件名
             new_filename = f"{random_number}-{work}"
             # 获取完整路径
