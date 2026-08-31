@@ -68,6 +68,9 @@ mutagen
 ## convert_wav.py
 转换指定目录中所有 wav 文件为指定采样率与位深度，并保存到指定目录。
 
+> [!CAUTION]
+> 工作异常
+
 ### 依赖
 soundfile numpy librosa
 
